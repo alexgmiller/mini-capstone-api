@@ -1,0 +1,27 @@
+### PRODUCTS CREATE
+POST http://localhost:3000/products
+content-type: application/json
+
+{
+   "name": "watch",
+   "price": 120,
+   "image_url": "watch.jpg",
+   "description": "A silver watch"
+}
+### PRODUCTS INDEX
+GET http://localhost:3000/products
+
+### PRODUCTS SHOW
+GET http://localhost:3000/product/1
+
+### PRODUCTS UPDATE
+PATCH http://localhost:3000/product/1
+Content-Type: application/json
+
+{
+   "name": "silver watch",
+   "price": 120,
+   "image_url": "watch.jpg",
+   "description": "A silver watch"
+}
+### PRODUCTS DESTROY
