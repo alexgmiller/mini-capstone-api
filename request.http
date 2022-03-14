@@ -3,25 +3,26 @@ POST http://localhost:3000/products
 content-type: application/json
 
 {
-   "name": "watch",
-   "price": 120,
-   "image_url": "watch.jpg",
-   "description": "A silver watch"
+   "name": "keyboard",
+   "price": 60,
+   "image_url": "keyboard.jpg",
+   "description": "A mechanical keyboard"
 }
 ### PRODUCTS INDEX
 GET http://localhost:3000/products
 
 ### PRODUCTS SHOW
-GET http://localhost:3000/product/1
+GET http://localhost:3000/products/1
 
 ### PRODUCTS UPDATE
-PATCH http://localhost:3000/product/1
+PATCH http://localhost:3000/products/1
 Content-Type: application/json
 
 {
    "name": "silver watch",
-   "price": 120,
+   "price": 140,
    "image_url": "watch.jpg",
    "description": "A silver watch"
 }
 ### PRODUCTS DESTROY
+DELETE http://localhost:3000/localhost:3000/product/1

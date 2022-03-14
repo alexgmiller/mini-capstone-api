@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     def show
         input = params["id"]
         product = Product.find_by(id: input)
-        render json: (product)
+        render json: product.as_json(methods: [:is_discounted, :tax, :total])
     end
 
     def create
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
         product.image_url = params["image"] || product.image_url
         product.description = params["description"] || product.description
         product.save
-        render json: recipe.as_json
+        render json: product.as_json
     end
 
     def destroy
