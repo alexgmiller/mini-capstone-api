@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
     belongs_to :supplier
+    has_many :orders
+    has_many :images
 
     def is_discounted
         price < 10

@@ -1,3 +1,6 @@
+@jwt =
+
+
 ### PRODUCTS CREATE
 POST http://localhost:3000/products
 content-type: application/json
@@ -48,6 +51,7 @@ Content-Type: application/json
 ### orders create
 POST http://localhost:3000/orders.localhost:3000/users.json
 Content-Type: application/json
+Authorization: Bearer {{jwt}}
 
 {
   "user_id": 1,
@@ -57,3 +61,8 @@ Content-Type: application/json
   "tax": ,
   "total":
 }
+
+### ORDERS INDEX
+GET http://localhost:3000/orders.json
+Authorization: Bearer {{jwt}}
+
