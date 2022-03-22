@@ -1,57 +1,45 @@
 class ProductsController < ApplicationController
     def index
-        products = Product.all
-        render json: products.as_json
+      @products = Product.all
+      render template: "products/index"
     end
-
-    def show
-        input = params["id"]
-        product = Product.find_by(id: input)
-        render json: product.as_json(methods: [:is_discounted, :tax, :total])
-    end
-
+  
     def create
-        product = Product.new(
-            name: params["name"],
-            price: params["price"],
-            image_url: params["image_url"],
-            description: params["description"])
-        product.save
+      @product = Product.new(
+        name: params[:name],
+        price: params[:price],
+        # image_url: params[:image_url],
+        description: params[:description],
+      )
+      if @product.save
+        render :show # Same as => `render template: "products/show"`
+      else
+        render json: {errors: @product.errors.full_messages}, status: 422
+      end
     end
-
+  
+    def show
+      @product = Product.find_by(id: params[:id])
+      render template: "products/show"
+    end
+  
     def update
-        product_id = params[:id]
-        product = Product.find_by(id: product_id)
-
-        product.name = params["name"] || product.name
-        product.price = params["price"] || product.price
-        product.image_url = params["image"] || product.image_url
-        product.description = params["description"] || product.description
-        product.save
-        render json: product.as_json
+      @product = Product.find_by(id: params[:id])
+      @product.name = params[:name] || @product.name
+      @product.price = params[:price] || @product.price
+      # @product.image_url = params[:image_url] || @product.image_url
+      @product.description = params[:description] || @product.description
+      if @product.save
+        render :show # Same as => `render template: "products/show"`
+      else
+        render json: {errors: @product.errors.full_messages}, status: 422
+      end
     end
-
+  
     def destroy
-        product_id = params[:id]
-        product = Product.find_by(id: product_id)
-        product.destroy
-        render json: {message: "Product id: #{product_id} has been deleted."}
+      product = Product.find_by(id: params[:id])
+      product.destroy
+      render json: { message: "Product destroyed successfully!" }
     end
-
-
-    # def first_product
-    #     product = Product.first
-    #     render json: product.as_json
-    # end
-
-    # def second_product
-    #     product = Product.second
-    #     render json: product.as_json
-    # end
-
-    # def third_product
-    #     product = Product.third
-    #     render json: product.as_json
-    # end
-
-end
+  end
+  
