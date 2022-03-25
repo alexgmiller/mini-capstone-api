@@ -2,6 +2,7 @@ class Product < ApplicationRecord
     belongs_to :supplier
     has_many :orders
     has_many :images
+    has_many :categoryproduct, through: :category_products
 
     def is_discounted
         price < 10
@@ -15,5 +16,11 @@ class Product < ApplicationRecord
     def total
         tax + price
     end
+
+    # def categories
+    #     category_proudcts.map do |category_product|
+    #         category_product.category
+    #     end
+    # end
 
 end

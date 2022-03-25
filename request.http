@@ -12,7 +12,7 @@ content-type: application/json
    "description": "A mechanical keyboard"
 }
 ### PRODUCTS INDEX
-GET http://localhost:3000/products
+GET http://localhost:3000/products.json?category=Electronics
 
 ### PRODUCTS SHOW
 GET http://localhost:3000/products/1.json
