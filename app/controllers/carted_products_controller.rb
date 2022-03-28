@@ -1,19 +1,19 @@
 class CartedProductsController < ApplicationController
     def create
-      carted_product = CartedProduct.new(
+      @carted_product = CartedProduct.new(
         product_id: params[:product_id],
         user_id: current_user.id,
         quantity: params[:quantity],
         # order_id: params[:order_id]
         status: "carted"
       )
-      carted_product.save
-      render json: carted_product
+      @carted_product.save
+      render template: "carted_products/show"
       end
     end
 
     def index
-      carted_product = current_user.carted_products.where(status: "carted")
+      @carted_product = current_user.carted_products.where(status: "carted")
       render json: carted_product
     end
 

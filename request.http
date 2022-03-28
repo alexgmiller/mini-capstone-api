@@ -67,7 +67,7 @@ GET http://localhost:3000/orders.json
 Authorization: Bearer {{jwt}}
 
 ### CARTEDPRODUCTS CREATE
-POST http://localhost:3000/cartedproducts
+POST http://localhost:3000/cartedproducts.json
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
